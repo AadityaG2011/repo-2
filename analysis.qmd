@@ -1,5 +1,34 @@
 ---
-title: "Untitled"
+title: "A Beautiful Graphic"
+author: Aaditya Gupta
 format: html
+execute:
+  echo: false
 ---
 
+```{r}
+suppressPackageStartupMessages(library(tidyverse))
+```
+
+```{r}
+#| message: false
+
+# Scatter plot of carat vs. price, colored by cut
+ggplot(diamonds, aes(x = carat, y = price, color = cut)) +
+  geom_point(alpha = 0.3, size = 1) +
+  geom_smooth(method = "loess", se = FALSE) +
+  scale_color_viridis_d(option = "C") +
+  labs(
+    title = "Relationship Between Carat and Price of Diamonds",
+    subtitle = "Higher quality cuts tend to command higher prices at comparable carats",
+    x = "Carat",
+    y = "Price (USD)",
+    color = "Cut Quality",
+    caption = "Data source: ggplot2::diamonds"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold"),
+    legend.position = "right"
+  )
+```
